@@ -4,29 +4,29 @@ title Folder Private
 if EXIST "HTG Locker" goto UNLOCK 
 if NOT EXIST Private goto MDLOCKER 
 :CONFIRM 
-echo Yakin do ho naeng mangutci Private folder i? (Y/N) 
+echo Are you sure you want to lock the folder(Y/N) 
 set/p "cho=>" 
 if %cho%==Y goto LOCK 
 if %cho%==y goto LOCK 
 if %cho%==n goto END 
 if %cho%==N goto END 
-echo Salah mamitcit do ho ces! Fokus jo ces!. 
+echo Invalid choice. 
 goto CONFIRM 
 :LOCK 
 ren Private "HTG Locker" 
 attrib +h +s "HTG Locker" 
-echo Folder tarkutci! 
+echo Folder locked 
 goto End 
 :UNLOCK 
-echo Pamasuk passport na ces! 
+echo Enter password to unlock folder 
 set/p "pass=>" 
-if NOT %pass%== r4hasia goto FAIL 
+if NOT %pass%== PASSWORD_DISINI goto FAIL 
 attrib -h -s "HTG Locker" 
 ren "HTG Locker" Private 
-echo Oke, nga tarbukka be! 
+echo Folder Unlocked successfully 
 goto End 
 :FAIL 
-echo Salah passport do ho ces!
+echo Invalid password 
 goto end 
 :MDLOCKER 
 md Private 
